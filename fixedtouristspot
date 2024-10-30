@@ -1,0 +1,3285 @@
+#include <iostream>
+#include <cstring>
+#include <string>
+#include <iomanip>
+
+using namespace std;
+
+float price[] = { 2000, 1200 };
+int size_price = sizeof(price) / sizeof(price[0]);
+
+float price2[] = { 1800, 1200, 1000 };
+int size_price2 = sizeof(price2) / sizeof(price2[0]);
+
+string pax[] = { " 2 - 4 persons ", " 2 - 4 persons " };
+string pax2[] = { " 2 - 6 persons ", " 2 - 5 persons ", " 2 - 4 persons" };
+
+string food[] = { " 1. Filipino Cuisine", " 2. International Cuisine " , " 3. Local Specialties ", " 4. Snacks and Refreshments " };
+int size_food = sizeof(food) / sizeof(food[0]);
+
+string price_food[] = { " Php 150.00/meal ", " Php 250.00/meal ", " Php 100.00/meal ", " Php 50.00/meal  " };
+
+string souvenir[] = { " 5. Baguio's Wood Carving", " 6. Cordillera Jewelry ", " 7. Ifugao's Woven Bag ", " 8. Baguio T-shirt " };
+
+string price_souvenir[] = { " Php 200.00 ", " Php 800.00 ", " Php 500.00 ", " Php 200.00 " };
+
+int choice1, no_of_people = 0, p_addition = 0, bag = 0, package = 0, others = 0, order = 0, num_order = 0, freebie = 0;
+char booking, choice, input, add_person = 'n', add_more = 'n';
+string name, date, hello;
+float mt_pulag_package = 0, total_payment = 0, money = 0, fil_cuisine = 150.00, int_cuisine = 250.00, loc_cuisine = 100.00, snacks = 50.00,
+wood_carve = 200.00, c_jewelry = 800.00, woven_bag = 500.00, t_shirt = 200.00;
+
+bool p_addition1 = true, access = false;
+
+void center(string name);
+void center_custom(string namec);
+char invalid_input(char y_or_n);
+int invalid_input_int(int num);
+int invalid_input_int2(int num);
+void invalid();
+void center_60(string name1);
+bool full_design(bool value);
+void header();
+bool mt_pulag(bool torf);
+bool strawberry(bool torf);
+bool baguio_heritage(bool torf);
+bool baguio_museum(bool torf);
+bool burnham(bool torf);
+void package_limit_4();
+void package_limit_6();
+void package_limit_5();
+string instruction_fail();
+float price_cal2000(int base_value, int person);
+void bag_total();
+void validator(char lchoice, int destination, bool book, bool number_of_people, bool expected_people, bool person_add, bool add_more1, bool person_add1, bool how_many_person);
+void insuf_money();
+float change();
+void confirmation();
+string out_greetings();
+void nature_package(char choice);
+void invalid2();
+bool invalid3(float order1);
+void header2();
+float order_formula(float price, int num_of_person);
+void choice_order();
+void invalid4();
+void invalid5();
+void total_price();
+void random_freebie();
+
+int main() {
+	
+
+	while (true) {
+
+		bag_total();
+	    header();
+
+		string na_packages[] = { " 1. Mount Pulag Adventure Package ", " 2. Strawberry Farm and Wright Park Package ", " "};
+		int size_na_packages = sizeof(na_packages) / sizeof(na_packages[0]);
+
+		string ch_packages[] = { " 1. Baguio City Heritage Package ", " 2. Burnham Park and Lake Drive Package ", " 3. Baguio City Museum Package " };
+		int size_ch_packages = sizeof(ch_packages) / sizeof(ch_packages[0]);
+
+		cout << "\n";
+		cout << left << setw(60);
+		center(" H O T D E A L S ");
+
+		cout << "\n";
+		cout << setw(14.5) << "" << setw(31) << setfill('-') << "" << setw(14.5) << setfill(' ') << "" << " |"
+			<< setw(12.5) << "" << setw(35) << setfill('-') << "" << setfill(' ') << endl;
+		center_60(" Nature and Adventure Packages ");
+		cout << "|";
+		center_60(" Cultural and Historical Packages ");
+		cout << endl;
+		cout << setw(14.5) << "" << setw(31) << setfill('-') << "" << setw(14.5) << setfill(' ') << "" << " |"
+			<< setw(12.5) << "" << setw(35) << setfill('-') << "" << setfill(' ') << endl;
+		cout << setw(60) << "" << "|" << endl;
+
+		for (int i = 0; i < size_na_packages; i++) {
+
+			cout << setw(5) << "" << left << setw(55) << na_packages[i] << "|" << setw(5) << "" << ch_packages[i] << endl;
+		}
+
+		
+		
+		cout << setw(60) << "" << "|" << endl;
+		cout << setw(120) << setfill('-') << "" << setfill(' ') << endl;
+	
+		
+		center(" Choose From Any Packages or Food & Souvenir Your Own! ");
+		center(" ( Type A for Nature and Adventure Packages, B for Cultural and Historical Packages, C to Marketplace ) ");
+
+	
+	
+
+			cout << "\n" << setw(5) << "" << " Choice: ";
+			cin >> choice;
+
+
+			if (cin.fail() || cin.peek() != '\n' || choice != 'A' && choice != 'a' && choice != 'B' && choice != 'b' && choice != 'C' && choice != 'c') {
+
+				invalid();
+
+				center(" Press Enter to Clear ");
+
+				if (cin.get() == '\n') {
+
+					system("cls");
+
+						continue;
+				} else {
+					instruction_fail();
+
+				}
+
+
+			}
+
+
+
+			switch (choice) {
+
+			case 'A': case 'a': 
+
+				system("cls");
+
+
+				while (true) {
+				
+					nature_package(choice);
+
+					for (int i = 0; i < size_price; i++) {
+
+						cout << setw(15) << "" << left << setw(60) << na_packages[i] << "Php " << left << setw(15) << price[i] << pax[i] << "\n" << endl;
+					}
+
+					cout << "\n";
+					cout << setw(120) << setfill('-') << "" << setfill(' ') << endl;
+
+					center(" Type the Designated Number to Book and For More Informations ");
+					center(" ( Type 1, or 2 - Press '0' to Exit ) ");
+				
+					cout << setw(15) << "" << " Choice: ";
+					cin >> choice1;
+
+					
+					if (invalid_input_int(choice1)){
+
+					    center(" Press Enter to Clear ");
+
+						validator(choice, choice1, false, false,false, false, false, false,false);
+						continue;
+
+					} else if (choice1 == 1) {
+
+						system("cls");
+
+						bag_total();
+						header();
+
+						mt_pulag(true);
+						mt_pulag(false);
+
+
+						while (true) {
+
+							cout << "\n";
+							cout << setw(15) << "" << left << setw(20) << " Book Now? (y/n): ";
+							cin >> booking;
+
+							if (invalid_input(booking)) {
+
+								center(" Press Enter to Clear ");
+
+								validator(choice, choice1, true, false,false, false, false, false,false);
+								continue;
+							}
+							else if (booking == 'y' || booking == 'Y') {
+
+								bag++;
+								package++;
+								total_payment += 2000;
+								break;
+
+							}
+							else if (booking == 'n' || booking == 'N') {
+
+								system("cls");
+								break;
+
+
+							}
+
+						}
+
+						if (booking == 'y' || booking == 'Y') {
+							cin.ignore();
+							system("cls");
+
+							bag_total();
+							
+							header();
+							mt_pulag(true);
+
+
+							cout << setw(15) << "" << left << setw(36) << " Representative's Name: ";
+							getline(cin, name);
+							cout << setw(15) << "" << left << setw(36) << " Book for the Date of: ";
+							getline(cin, date);
+
+							while (true) {
+
+								cout << setw(15) << "" << left << setw(36) << " Expected No. of People to Come: ";
+								cin >> no_of_people;
+
+
+								if (cin.fail() || cin.peek() != '\n') {
+
+									invalid();
+									center(" Press Enter To Clear ");
+										
+									validator(choice, choice1, false, true, false, false, false, false, false);
+								
+
+									continue;
+									
+								}
+								else if (no_of_people > 4 || no_of_people < 1) {
+
+									cin.ignore();
+									package_limit_4();
+
+									validator(choice, choice1, false, true, false, false, false, false, false);
+
+									continue;
+									
+								}
+								else {
+
+									break;
+								}
+
+							}
+
+							while (true) {
+								cout << setw(15) << "" << left << setw(36) << " Additional Person? (y/n): ";
+								cin >> add_person;
+
+								if (invalid_input(add_person)) {
+
+
+									center(" Press Enter To Clear ");
+
+									validator(choice, choice1, false, true, true, false, false, false, false);
+
+								}
+								else if (add_person == 'y' || add_person == 'Y') {
+
+									break;
+
+								
+								} else  {
+									 
+								
+									p_addition1 = false;
+									break;
+									
+								}
+
+							}
+
+							if (add_person == 'y' || add_person == 'Y') {
+
+								cout << "\n";
+								center(" <-<-<-<-<-<-<-<-<-< ");
+								center(" Php 500.00 / head ");
+								center(" <-<-<-<-<-<-<-<-<-< ");
+
+								while (true) {
+
+									cout << "\n";
+									cout << setw(15) << "" << left << setw(36) << " How Many Person? ";
+									cin >> p_addition;
+
+									if (cin.fail() || cin.peek() != '\n') {
+
+										
+										invalid();
+
+										center(" Press Enter to Clear ");
+
+										validator(choice, choice1, false, true, true, true, false, true, false);
+
+										continue;
+
+									} else {
+
+										cout << "\n";
+										center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+										center(" Pay ");
+										cout << setw(56) << "" << "Php ";
+										total_payment += price_cal2000(500, p_addition);
+										cout << total_payment << endl;
+										center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+										p_addition1 = true;
+										cout << "\n";
+										break;
+
+									}
+								}
+							}
+								
+							if (add_person == 'y' || add_person == 'Y') {
+								validator(choice, choice1, false, true, true, true, false, true, true);
+							}
+
+							while (true) {
+								
+								cout << setw(15) << "" << setw(36) << " Add More? (y/n): ";
+								cin >> add_more;
+
+								if (invalid_input(add_more)) {
+
+									center(" Press Enter to Clear ");
+
+									if (p_addition1 == false) {
+
+										validator(choice, choice1, false, true, true, true, false, false, false);
+
+									}
+									else {
+
+										validator(choice, choice1, false, true, true, true, false, true, true);
+
+									}
+
+								} else if (add_more == 'Y' || add_more == 'y') {
+
+									system("cls");
+									break;
+
+								} else if (add_more == 'n' || add_more == 'N') {
+
+									while (true) {
+
+										if (p_addition1 == false) {
+
+											total_price();
+										}
+										
+										cout << setw(15)  << "" << setw(36) << " Change for How Much? " << "Php ";
+										cin >> money;
+
+
+										if (cin.fail() || cin.peek() != '\n') {
+
+											invalid();
+
+											center(" Press Enter to Clear ");
+
+
+											if (p_addition1 == false) {
+
+												validator(choice, choice1, false, true, true, true, true, false, false);
+
+											}
+											else if (p_addition1 == true) {
+
+
+												validator(choice, choice1, false, true, true, true, false, true, true);
+
+												cout << setw(15) << "" << setw(36) << " Add More? (y/n): " << add_more << endl;
+
+											}
+
+											continue;
+
+										}
+										else if (money < total_payment) {
+
+											insuf_money();
+
+											if (p_addition1 == false) {
+												validator(choice, choice1, false, true, true, true, true, false, false);
+
+											}
+											else if (p_addition1 == true) {
+
+												validator(choice, choice1, false, true, true, true, false, true, true);
+
+												cout << setw(15) << "" << setw(36) << " Add More? (y/n): " << add_more << endl;
+
+											}
+
+											continue;
+
+										}
+										else {
+
+											confirmation();
+											out_greetings();
+
+										}
+
+									}
+
+								}
+
+							}
+
+						}
+
+
+					}
+					else if (choice1 == 2) {
+						system("cls");
+
+						bag_total();
+						header();
+
+						strawberry(true);
+						strawberry(false);
+
+
+						while (true) {
+
+							cout << "\n";
+							cout << setw(15) << "" << left << setw(20) << " Book Now? (y/n): ";
+							cin >> booking;
+
+							if (invalid_input(booking)) {
+
+								center(" Press Enter to Clear ");
+
+								validator(choice, choice1, true, false, false, false, false, false, false);
+								continue;
+							}
+							else if (booking == 'y' || booking == 'Y') {
+
+								bag++;
+								package++;
+								total_payment += 1200;
+								break;
+
+							}
+							else if (booking == 'n' || booking == 'N') {
+
+								system("cls");
+								break;
+
+
+							}
+
+						}
+
+						if (booking == 'y' || booking == 'Y') {
+							cin.ignore();
+							system("cls");
+
+							bag_total();
+
+							header();
+							strawberry(true);
+
+
+							cout << setw(15) << "" << left << setw(36) << " Representative's Name: ";
+							getline(cin, name);
+							cout << setw(15) << "" << left << setw(36) << " Book for the Date of: ";
+							getline(cin, date);
+
+							while (true) {
+
+								cout << setw(15) << "" << left << setw(36) << " Expected No. of People to Come: ";
+								cin >> no_of_people;
+
+
+								if (cin.fail() || cin.peek() != '\n') {
+
+									invalid();
+									center(" Press Enter To Clear ");
+
+									validator(choice, choice1, false, true, false, false, false, false, false);
+
+
+									continue;
+
+								}
+								else if (no_of_people > 4 || no_of_people < 1) {
+
+									cin.ignore();
+									package_limit_4();
+
+									validator(choice, choice1, false, true, false, false, false, false, false);
+
+									continue;
+
+								}
+								else {
+
+									break;
+								}
+
+							}
+
+							while (true) {
+								cout << setw(15) << "" << left << setw(36) << " Additional Person? (y/n): ";
+								cin >> add_person;
+
+								if (invalid_input(add_person)) {
+
+
+									center(" Press Enter To Clear ");
+
+									validator(choice, choice1, false, true, true, false, false, false, false);
+
+								}
+								else if (add_person == 'y' || add_person == 'Y') {
+
+									break;
+
+
+								}
+								else {
+
+
+									p_addition1 = false;
+									break;
+
+								}
+
+							}
+
+							if (add_person == 'y' || add_person == 'Y') {
+
+								cout << "\n";
+								center(" <-<-<-<-<-<-<-<-<-< ");
+								center(" Php 200.00 / head ");
+								center(" <-<-<-<-<-<-<-<-<-< ");
+
+								while (true) {
+
+									cout << "\n";
+									cout << setw(15) << "" << left << setw(36) << " How Many Person? ";
+									cin >> p_addition;
+
+									if (cin.fail() || cin.peek() != '\n') {
+
+
+										invalid();
+
+										center(" Press Enter to Clear ");
+
+										validator(choice, choice1, false, true, true, true, false, true, false);
+
+										continue;
+
+									}
+									else {
+
+										cout << "\n";
+										center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+										center(" Pay ");
+										cout << setw(56) << "" << "Php ";
+										total_payment += price_cal2000(200, p_addition);
+										cout << total_payment << endl;
+										center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+										p_addition1 = true;
+										cout << "\n";
+										break;
+
+									}
+								}
+							}
+
+							if (add_person == 'y' || add_person == 'Y') {
+								validator(choice, choice1, false, true, true, true, false, true, true);
+							}
+
+							while (true) {
+
+								cout << setw(15) << "" << setw(36) << " Add More? (y/n): ";
+								cin >> add_more;
+
+								if (invalid_input(add_more)) {
+
+									center(" Press Enter to Clear ");
+
+									if (p_addition1 == false) {
+
+										validator(choice, choice1, false, true, true, true, false, false, false);
+
+									}
+									else {
+
+										validator(choice, choice1, false, true, true, true, false, true, true);
+
+									}
+
+								}
+								else if (add_more == 'Y' || add_more == 'y') {
+
+									system("cls");
+									break;
+
+								}
+								else if (add_more == 'n' || add_more == 'N') {
+
+									while (true) {
+
+										if (p_addition1 == false) {
+
+											total_price();
+										}
+
+										cout << setw(15) << "" << setw(36) << " Change for How Much? " << "Php ";
+										cin >> money;
+
+
+										if (cin.fail() || cin.peek() != '\n') {
+
+											invalid();
+
+											center(" Press Enter to Clear ");
+
+
+											if (p_addition1 == false) {
+
+												validator(choice, choice1, false, true, true, true, true, false, false);
+
+											}
+											else if (p_addition1 == true) {
+
+
+												validator(choice, choice1, false, true, true, true, false, true, true);
+
+												cout << setw(15) << "" << setw(36) << " Add More? (y/n): " << add_more << endl;
+
+											}
+
+											continue;
+
+										}
+										else if (money < total_payment) {
+
+											insuf_money();
+
+											if (p_addition1 == false) {
+												validator(choice, choice1, false, true, true, true, true, false, false);
+
+											}
+											else if (p_addition1 == true) {
+
+												validator(choice, choice1, false, true, true, true, false, true, true);
+
+												cout << setw(15) << "" << setw(36) << " Add More? (y/n): " << add_more << endl;
+
+											}
+
+											continue;
+
+										}
+										else {
+
+											confirmation();
+											out_greetings();
+
+										}
+
+									}
+
+								}
+
+							}
+
+						}
+
+
+					}
+					else if (choice1 == 0) {
+						system("cls");
+						break;
+					}
+					
+			
+					if (add_more == 'Y' || add_more == 'y') {
+
+						add_more = '\0';
+
+						break;
+					}
+					
+				}
+
+				break;
+
+
+
+
+
+
+			case 'B': case 'b':
+				system("cls");
+
+
+				while (true) {
+
+					nature_package(choice);
+
+					for (int i = 0; i < size_price2; i++) {
+
+						cout << setw(15) << "" << left << setw(60) << ch_packages[i] << "Php " << left << setw(15) << price2[i] << pax2[i] << "\n" << endl;
+					}
+
+					cout << "\n";
+					cout << setw(120) << setfill('-') << "" << setfill(' ') << endl;
+
+					center(" Type the Designated Number to Book and For More Informations ");
+					center(" ( Type 1, 2, or 3 - Press '0' to Exit ) ");
+
+					cout << setw(15) << "" << " Choice: ";
+					cin >> choice1;
+
+
+					if (invalid_input_int2(choice1)) {
+
+						center(" Press Enter to Clear ");
+
+						validator(choice, choice1, false, false, false, false, false, false, false);
+						continue;
+
+					}
+					else if (choice1 == 1) {
+
+						system("cls");
+
+						bag_total();
+						header();
+
+						baguio_heritage(true);
+						baguio_heritage(false);
+
+
+						while (true) {
+
+							cout << "\n";
+							cout << setw(15) << "" << left << setw(20) << " Book Now? (y/n): ";
+							cin >> booking;
+
+							if (invalid_input(booking)) {
+
+								center(" Press Enter to Clear ");
+
+								validator(choice, choice1, true, false, false, false, false, false, false);
+								continue;
+							}
+							else if (booking == 'y' || booking == 'Y') {
+
+								bag++;
+								package++;
+								total_payment += 1800;
+								break;
+
+							}
+							else if (booking == 'n' || booking == 'N') {
+
+								system("cls");
+								break;
+
+
+							}
+
+						}
+
+						if (booking == 'y' || booking == 'Y') {
+							cin.ignore();
+							system("cls");
+
+							bag_total();
+
+							header();
+							baguio_heritage(true);
+
+
+							cout << setw(15) << "" << left << setw(36) << " Representative's Name: ";
+							getline(cin, name);
+							cout << setw(15) << "" << left << setw(36) << " Book for the Date of: ";
+							getline(cin, date);
+
+							while (true) {
+
+								cout << setw(15) << "" << left << setw(36) << " Expected No. of People to Come: ";
+								cin >> no_of_people;
+
+
+								if (cin.fail() || cin.peek() != '\n') {
+
+									invalid();
+									center(" Press Enter To Clear ");
+
+									validator(choice, choice1, false, true, false, false, false, false, false);
+
+
+									continue;
+
+								}
+								else if (no_of_people > 6 || no_of_people < 1) {
+
+									cin.ignore();
+									package_limit_6();
+
+									validator(choice, choice1, false, true, false, false, false, false, false);
+
+									continue;
+
+								}
+								else {
+
+									break;
+								}
+
+							}
+
+							while (true) {
+								cout << setw(15) << "" << left << setw(36) << " Additional Person? (y/n): ";
+								cin >> add_person;
+
+								if (invalid_input(add_person)) {
+
+
+									center(" Press Enter To Clear ");
+
+									validator(choice, choice1, false, true, true, false, false, false, false);
+
+								}
+								else if (add_person == 'y' || add_person == 'Y') {
+
+									break;
+
+
+								}
+								else {
+
+
+									p_addition1 = false;
+									break;
+
+								}
+
+							}
+
+							if (add_person == 'y' || add_person == 'Y') {
+
+								cout << "\n";
+								center(" <-<-<-<-<-<-<-<-<-< ");
+								center(" Php 400.00 / head ");
+								center(" <-<-<-<-<-<-<-<-<-< ");
+
+								while (true) {
+
+									cout << "\n";
+									cout << setw(15) << "" << left << setw(36) << " How Many Person? ";
+									cin >> p_addition;
+
+									if (cin.fail() || cin.peek() != '\n') {
+
+
+										invalid();
+
+										center(" Press Enter to Clear ");
+
+										validator(choice, choice1, false, true, true, true, false, true, false);
+
+										continue;
+
+									}
+									else {
+
+										cout << "\n";
+										center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+										center(" Pay ");
+										cout << setw(56) << "" << "Php ";
+										total_payment += price_cal2000(400, p_addition);
+										cout << total_payment << endl;
+										center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+										p_addition1 = true;
+										cout << "\n";
+										break;
+
+									}
+								}
+							}
+
+							if (add_person == 'y' || add_person == 'Y') {
+								validator(choice, choice1, false, true, true, true, false, true, true);
+							}
+
+							while (true) {
+
+								cout << setw(15) << "" << setw(36) << " Add More? (y/n): ";
+								cin >> add_more;
+
+								if (invalid_input(add_more)) {
+
+									center(" Press Enter to Clear ");
+
+									if (p_addition1 == false) {
+
+										validator(choice, choice1, false, true, true, true, false, false, false);
+
+									}
+									else {
+
+										validator(choice, choice1, false, true, true, true, false, true, true);
+
+									}
+
+								}
+								else if (add_more == 'Y' || add_more == 'y') {
+
+									system("cls");
+									break;
+
+								}
+								else if (add_more == 'n' || add_more == 'N') {
+
+									while (true) {
+
+										if (p_addition1 == false) {
+
+											total_price();
+										}
+
+										cout << setw(15) << "" << setw(36) << " Change for How Much? " << "Php ";
+										cin >> money;
+
+
+										if (cin.fail() || cin.peek() != '\n') {
+
+											invalid();
+
+											center(" Press Enter to Clear ");
+
+
+											if (p_addition1 == false) {
+
+												validator(choice, choice1, false, true, true, true, true, false, false);
+
+											}
+											else if (p_addition1 == true) {
+
+
+												validator(choice, choice1, false, true, true, true, false, true, true);
+
+												cout << setw(15) << "" << setw(36) << " Add More? (y/n): " << add_more << endl;
+
+											}
+
+											continue;
+
+										}
+										else if (money < total_payment) {
+
+											insuf_money();
+
+											if (p_addition1 == false) {
+												validator(choice, choice1, false, true, true, true, true, false, false);
+
+											}
+											else if (p_addition1 == true) {
+
+												validator(choice, choice1, false, true, true, true, false, true, true);
+
+												cout << setw(15) << "" << setw(36) << " Add More? (y/n): " << add_more << endl;
+
+											}
+
+											continue;
+
+										}
+										else {
+
+											confirmation();
+											out_greetings();
+
+										}
+
+									}
+
+								}
+
+							}
+
+						}
+
+
+					}
+					else if (choice1 == 2) {
+						system("cls");
+
+						bag_total();
+						header();
+
+						burnham(true);
+						burnham(false);
+
+
+						while (true) {
+
+							cout << "\n";
+							cout << setw(15) << "" << left << setw(20) << " Book Now? (y/n): ";
+							cin >> booking;
+
+							if (invalid_input(booking)) {
+
+								center(" Press Enter to Clear ");
+
+								validator(choice, choice1, true, false, false, false, false, false, false);
+								continue;
+							}
+							else if (booking == 'y' || booking == 'Y') {
+
+								bag++;
+								package++;
+								total_payment += 1200;
+								break;
+
+							}
+							else if (booking == 'n' || booking == 'N') {
+
+								system("cls");
+								break;
+
+
+							}
+
+						}
+
+						if (booking == 'y' || booking == 'Y') {
+							cin.ignore();
+							system("cls");
+
+							bag_total();
+
+							header();
+							burnham(true);
+
+
+							cout << setw(15) << "" << left << setw(36) << " Representative's Name: ";
+							getline(cin, name);
+							cout << setw(15) << "" << left << setw(36) << " Book for the Date of: ";
+							getline(cin, date);
+
+							while (true) {
+
+								cout << setw(15) << "" << left << setw(36) << " Expected No. of People to Come: ";
+								cin >> no_of_people;
+
+
+								if (cin.fail() || cin.peek() != '\n') {
+
+									invalid();
+									center(" Press Enter To Clear ");
+
+									validator(choice, choice1, false, true, false, false, false, false, false);
+
+
+									continue;
+
+								}
+								else if (no_of_people > 5 || no_of_people < 1) {
+
+									cin.ignore();
+									package_limit_5();
+
+									validator(choice, choice1, false, true, false, false, false, false, false);
+
+									continue;
+
+								}
+								else {
+
+									break;
+								}
+
+							}
+
+							while (true) {
+								cout << setw(15) << "" << left << setw(36) << " Additional Person? (y/n): ";
+								cin >> add_person;
+
+								if (invalid_input(add_person)) {
+
+
+									center(" Press Enter To Clear ");
+
+									validator(choice, choice1, false, true, true, false, false, false, false);
+
+								}
+								else if (add_person == 'y' || add_person == 'Y') {
+
+									break;
+
+
+								}
+								else {
+
+
+									p_addition1 = false;
+									break;
+
+								}
+
+							}
+
+							if (add_person == 'y' || add_person == 'Y') {
+
+								cout << "\n";
+								center(" <-<-<-<-<-<-<-<-<-< ");
+								center(" Php 200.00 / head ");
+								center(" <-<-<-<-<-<-<-<-<-< ");
+
+								while (true) {
+
+									cout << "\n";
+									cout << setw(15) << "" << left << setw(36) << " How Many Person? ";
+									cin >> p_addition;
+
+									if (cin.fail() || cin.peek() != '\n') {
+
+
+										invalid();
+
+										center(" Press Enter to Clear ");
+
+										validator(choice, choice1, false, true, true, true, false, true, false);
+
+										continue;
+
+									}
+									else {
+
+										cout << "\n";
+										center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+										center(" Pay ");
+										cout << setw(56) << "" << "Php ";
+										total_payment += price_cal2000(200, p_addition);
+										cout << total_payment << endl;
+										center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+										p_addition1 = true;
+										cout << "\n";
+										break;
+
+									}
+								}
+							}
+
+							if (add_person == 'y' || add_person == 'Y') {
+								validator(choice, choice1, false, true, true, true, false, true, true);
+							}
+
+							while (true) {
+
+								cout << setw(15) << "" << setw(36) << " Add More? (y/n): ";
+								cin >> add_more;
+
+								if (invalid_input(add_more)) {
+
+									center(" Press Enter to Clear ");
+
+									if (p_addition1 == false) {
+
+										validator(choice, choice1, false, true, true, true, false, false, false);
+
+									}
+									else {
+
+										validator(choice, choice1, false, true, true, true, false, true, true);
+
+									}
+
+								}
+								else if (add_more == 'Y' || add_more == 'y') {
+
+									system("cls");
+									break;
+
+								}
+								else if (add_more == 'n' || add_more == 'N') {
+
+									while (true) {
+
+										if (p_addition1 == false) {
+
+											total_price();
+										}
+
+										cout << setw(15) << "" << setw(36) << " Change for How Much? " << "Php ";
+										cin >> money;
+
+
+										if (cin.fail() || cin.peek() != '\n') {
+
+											invalid();
+
+											center(" Press Enter to Clear ");
+
+
+											if (p_addition1 == false) {
+
+												validator(choice, choice1, false, true, true, true, true, false, false);
+
+											}
+											else if (p_addition1 == true) {
+
+
+												validator(choice, choice1, false, true, true, true, false, true, true);
+
+												cout << setw(15) << "" << setw(36) << " Add More? (y/n): " << add_more << endl;
+
+											}
+
+											continue;
+
+										}
+										else if (money < total_payment) {
+
+											insuf_money();
+
+											if (p_addition1 == false) {
+												validator(choice, choice1, false, true, true, true, true, false, false);
+
+											}
+											else if (p_addition1 == true) {
+
+												validator(choice, choice1, false, true, true, true, false, true, true);
+
+												cout << setw(15) << "" << setw(36) << " Add More? (y/n): " << add_more << endl;
+
+											}
+
+											continue;
+
+										}
+										else {
+
+											confirmation();
+											out_greetings();
+
+										}
+
+									}
+
+								}
+
+							}
+
+						}
+
+
+					}
+					else if (choice1 == 3) {
+						system("cls");
+
+						bag_total();
+						header();
+
+						baguio_museum(true);
+						baguio_museum(false);
+
+
+						while (true) {
+
+							cout << "\n";
+							cout << setw(15) << "" << left << setw(20) << " Book Now? (y/n): ";
+							cin >> booking;
+
+							if (invalid_input(booking)) {
+
+								center(" Press Enter to Clear ");
+
+								validator(choice, choice1, true, false, false, false, false, false, false);
+								continue;
+							}
+							else if (booking == 'y' || booking == 'Y') {
+
+								bag++;
+								package++;
+								total_payment += 1000;
+								break;
+
+							}
+							else if (booking == 'n' || booking == 'N') {
+
+								system("cls");
+								break;
+
+
+							}
+
+						}
+
+						if (booking == 'y' || booking == 'Y') {
+							cin.ignore();
+							system("cls");
+
+							bag_total();
+
+							header();
+							baguio_museum(true);
+
+
+							cout << setw(15) << "" << left << setw(36) << " Representative's Name: ";
+							getline(cin, name);
+							cout << setw(15) << "" << left << setw(36) << " Book for the Date of: ";
+							getline(cin, date);
+
+							while (true) {
+
+								cout << setw(15) << "" << left << setw(36) << " Expected No. of People to Come: ";
+								cin >> no_of_people;
+
+
+								if (cin.fail() || cin.peek() != '\n') {
+
+									invalid();
+									center(" Press Enter To Clear ");
+
+									validator(choice, choice1, false, true, false, false, false, false, false);
+
+
+									continue;
+
+								}
+								else if (no_of_people > 4 || no_of_people < 1) {
+
+									cin.ignore();
+									package_limit_4();
+
+									validator(choice, choice1, false, true, false, false, false, false, false);
+
+									continue;
+
+								}
+								else {
+
+									break;
+								}
+
+							}
+
+							while (true) {
+								cout << setw(15) << "" << left << setw(36) << " Additional Person? (y/n): ";
+								cin >> add_person;
+
+								if (invalid_input(add_person)) {
+
+
+									center(" Press Enter To Clear ");
+
+									validator(choice, choice1, false, true, true, false, false, false, false);
+
+								}
+								else if (add_person == 'y' || add_person == 'Y') {
+
+									break;
+
+
+								}
+								else {
+
+
+									p_addition1 = false;
+									break;
+
+								}
+
+							}
+
+							if (add_person == 'y' || add_person == 'Y') {
+
+								cout << "\n";
+								center(" <-<-<-<-<-<-<-<-<-< ");
+								center(" Php 150.00 / head ");
+								center(" <-<-<-<-<-<-<-<-<-< ");
+
+								while (true) {
+
+									cout << "\n";
+									cout << setw(15) << "" << left << setw(36) << " How Many Person? ";
+									cin >> p_addition;
+
+									if (cin.fail() || cin.peek() != '\n') {
+
+
+										invalid();
+
+										center(" Press Enter to Clear ");
+
+										validator(choice, choice1, false, true, true, true, false, true, false);
+
+										continue;
+
+									}
+									else {
+
+										cout << "\n";
+										center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+										center(" Pay ");
+										cout << setw(56) << "" << "Php ";
+										total_payment += price_cal2000(150, p_addition);
+										cout << total_payment << endl;
+										center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+										p_addition1 = true;
+										cout << "\n";
+										break;
+
+									}
+								}
+							}
+
+							if (add_person == 'y' || add_person == 'Y') {
+								validator(choice, choice1, false, true, true, true, false, true, true);
+							}
+
+							while (true) {
+
+								cout << setw(15) << "" << setw(36) << " Add More? (y/n): ";
+								cin >> add_more;
+
+								if (invalid_input(add_more)) {
+
+									center(" Press Enter to Clear ");
+
+									if (p_addition1 == false) {
+
+										validator(choice, choice1, false, true, true, true, false, false, false);
+
+									}
+									else {
+
+										validator(choice, choice1, false, true, true, true, false, true, true);
+
+									}
+
+								}
+								else if (add_more == 'Y' || add_more == 'y') {
+
+									system("cls");
+									break;
+
+								}
+								else if (add_more == 'n' || add_more == 'N') {
+
+									while (true) {
+
+										if (p_addition1 == false) {
+
+											total_price();
+										}
+
+										cout << setw(15) << "" << setw(36) << " Change for How Much? " << "Php ";
+										cin >> money;
+
+
+										if (cin.fail() || cin.peek() != '\n') {
+
+											invalid();
+
+											center(" Press Enter to Clear ");
+
+
+											if (p_addition1 == false) {
+
+												validator(choice, choice1, false, true, true, true, true, false, false);
+
+											}
+											else if (p_addition1 == true) {
+
+
+												validator(choice, choice1, false, true, true, true, false, true, true);
+
+												cout << setw(15) << "" << setw(36) << " Add More? (y/n): " << add_more << endl;
+
+											}
+
+											continue;
+
+										}
+										else if (money < total_payment) {
+
+											insuf_money();
+
+											if (p_addition1 == false) {
+												validator(choice, choice1, false, true, true, true, true, false, false);
+
+											}
+											else if (p_addition1 == true) {
+
+												validator(choice, choice1, false, true, true, true, false, true, true);
+
+												cout << setw(15) << "" << setw(36) << " Add More? (y/n): " << add_more << endl;
+
+											}
+
+											continue;
+
+										}
+										else {
+
+											confirmation();
+											out_greetings();
+
+										}
+
+									}
+
+								}
+
+							}
+
+						}
+						
+					}
+					else if (choice1 == 0) {
+						system("cls");
+						break;
+					}
+
+
+					if (add_more == 'Y' || add_more == 'y') {
+
+						add_more = '\0';
+
+						break;
+					}
+
+				}
+
+				break;
+				
+				
+
+			case 'C': case 'c':
+				
+				while (true) {
+
+					system("cls");
+
+					bag_total();
+					header();
+				
+					header2();
+
+					cout << setw(15) << "" << " Choice: ";
+					cin >> order;
+					
+					if (cin.fail() || cin.peek() != '\n') {
+
+						invalid();
+
+						center(" Press Enter to Clear ");
+
+						invalid4();
+
+					} else if (order == 1) {
+					
+						while (true) {
+
+							cout << setw(15) << "" << " How Many Orders? ";
+							cin >> num_order;
+
+							if (!(invalid3(num_order))) {
+
+								continue;
+
+							}
+							else {
+
+
+								others += num_order;
+								bag += num_order;
+								total_payment += order_formula(fil_cuisine, num_order);
+
+								system("cls");
+								bag_total();
+								header();
+								header2();
+								cout << setw(15) << "" << " Choice: " << order << endl;
+								cout << setw(15) << "" << " How Many Orders? " << num_order << endl;
+								cout << "\n";
+								center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+								center(" Pay ");
+								cout << setw(56) << "" << "Php ";
+								cout << total_payment << endl;
+								center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+								
+								
+									if (others >= 5 && access == false) {
+
+										random_freebie();
+
+
+									}
+									else {
+
+										break;
+
+									}
+									
+								
+								
+								break;
+							
+
+							}
+						}
+							while (true) {
+
+								cout << setw(15) << "" << " Add More? (y/n): ";
+								cin >> add_more;
+
+								if (invalid_input(add_more)) {
+
+									center(" Press Enter to Clear ");
+
+									invalid5();
+
+								}
+								else if (add_more == 'Y' || add_more == 'y') {
+
+									break;
+
+								}
+								else if (add_more == 'N' || add_more == 'n') {
+
+									while (true) {
+										
+										cout << setw(15) << "" << " Change for How Much? Php ";
+										cin >> money;
+
+										if (cin.fail () || cin.peek() != '\n') {
+
+										
+											invalid();
+											center(" Press Enter to Clear ");
+											invalid5();
+											cout << setw(15) << "" << " Add More? " << add_more << endl;
+											continue;
+
+										}
+										else if (money < total_payment) {
+
+											insuf_money();
+											invalid5();
+											cout << setw(15) << "" << " Add More? " << add_more << endl;
+											continue;
+
+										}
+										else {
+
+											confirmation();
+											out_greetings();
+											
+
+										}
+									}
+								}
+
+
+							}
+
+							
+						
+
+						
+						
+					} else if (order == 2) {
+						
+						while (true) {
+
+							cout << setw(15) << "" << " How Many Orders? ";
+							cin >> num_order;
+
+							if (!(invalid3(num_order))) {
+
+								continue;
+
+							}
+							else {
+
+
+								others += num_order;
+								bag += num_order;
+								total_payment += order_formula(int_cuisine, num_order);
+
+								system("cls");
+								bag_total();
+								header();
+								header2();
+								cout << setw(15) << "" << " Choice: " << order << endl;
+								cout << setw(15) << "" << " How Many Orders? " << num_order << endl;
+								cout << "\n";
+								center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+								center(" Pay ");
+								cout << setw(56) << "" << "Php ";
+								cout << total_payment << endl;
+								center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+
+								if (others >= 5 && access == false) {
+
+									random_freebie();
+
+
+								}
+								else {
+
+									break;
+
+								}
+
+								break;
+
+							}
+						}
+						while (true) {
+
+							cout << setw(15) << "" << " Add More? (y/n): ";
+							cin >> add_more;
+
+							if (invalid_input(add_more)) {
+
+								center(" Press Enter to Clear ");
+
+								invalid5();
+
+							}
+							else if (add_more == 'Y' || add_more == 'y') {
+
+								break;
+
+							}
+							else if (add_more == 'N' || add_more == 'n') {
+
+								while (true) {
+
+									cout << setw(15) << "" << " Change for How Much? Php ";
+									cin >> money;
+
+									if (cin.fail() || cin.peek() != '\n') {
+
+
+										invalid();
+										center(" Press Enter to Clear ");
+										invalid5();
+										cout << setw(15) << "" << " Add More? " << add_more << endl;
+										continue;
+
+									}
+									else if (money < total_payment) {
+
+										insuf_money();
+										invalid5();
+										cout << setw(15) << "" << " Add More? " << add_more << endl;
+										continue;
+
+									}
+									else {
+
+										confirmation();
+										out_greetings();
+
+
+									}
+								}
+							}
+
+
+						}
+
+					} else if (order == 3) {
+
+						while (true) {
+
+							cout << setw(15) << "" << " How Many Orders? ";
+							cin >> num_order;
+
+							if (!(invalid3(num_order))) {
+
+								continue;
+
+							}
+							else {
+
+
+								others += num_order;
+								bag += num_order;
+								total_payment += order_formula(loc_cuisine, num_order);
+
+								system("cls");
+								bag_total();
+								header();
+								header2();
+								cout << setw(15) << "" << " Choice: " << order << endl;
+								cout << setw(15) << "" << " How Many Orders? " << num_order << endl;
+								cout << "\n";
+								center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+								center(" Pay ");
+								cout << setw(56) << "" << "Php ";
+								cout << total_payment << endl;
+								center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+
+								if (others >= 5 && access == false) {
+
+									random_freebie();
+
+
+								}
+								else {
+
+									break;
+
+								}
+
+								break;
+
+							}
+						}
+						while (true) {
+
+							cout << setw(15) << "" << " Add More? (y/n): ";
+							cin >> add_more;
+
+							if (invalid_input(add_more)) {
+
+								center(" Press Enter to Clear ");
+
+								invalid5();
+
+							}
+							else if (add_more == 'Y' || add_more == 'y') {
+
+								break;
+
+							}
+							else if (add_more == 'N' || add_more == 'n') {
+
+								while (true) {
+
+									cout << setw(15) << "" << " Change for How Much? Php ";
+									cin >> money;
+
+									if (cin.fail() || cin.peek() != '\n') {
+
+
+										invalid();
+										center(" Press Enter to Clear ");
+										invalid5();
+										cout << setw(15) << "" << " Add More? " << add_more << endl;
+										continue;
+
+									}
+									else if (money < total_payment) {
+
+										insuf_money();
+										invalid5();
+										cout << setw(15) << "" << " Add More? " << add_more << endl;
+										continue;
+
+									}
+									else {
+
+										confirmation();
+										out_greetings();
+
+
+									}
+								}
+							}
+
+
+						
+						}
+
+
+					} else if (order == 4) {
+
+						while (true) {
+
+							cout << setw(15) << "" << " How Many Orders? ";
+							cin >> num_order;
+
+							if (!(invalid3(num_order))) {
+
+								continue;
+
+							}
+							else {
+
+
+								others += num_order;
+								bag += num_order;
+								total_payment += order_formula(snacks, num_order);
+
+								system("cls");
+								bag_total();
+								header();
+								header2();
+								cout << setw(15) << "" << " Choice: " << order << endl;
+								cout << setw(15) << "" << " How Many Orders? " << num_order << endl;
+								cout << "\n";
+								center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+								center(" Pay ");
+								cout << setw(56) << "" << "Php ";
+								cout << total_payment << endl;
+								center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+
+								if (others >= 5 && access == false) {
+
+									random_freebie();
+
+
+								}
+								else {
+
+									break;
+
+								}
+
+								break;
+
+							}
+						}
+						while (true) {
+
+							cout << setw(15) << "" << " Add More? (y/n): ";
+							cin >> add_more;
+
+							if (invalid_input(add_more)) {
+
+								center(" Press Enter to Clear ");
+
+								invalid5();
+
+							}
+							else if (add_more == 'Y' || add_more == 'y') {
+
+								break;
+
+							}
+							else if (add_more == 'N' || add_more == 'n') {
+
+								while (true) {
+
+									cout << setw(15) << "" << " Change for How Much? Php ";
+									cin >> money;
+
+									if (cin.fail() || cin.peek() != '\n') {
+
+
+										invalid();
+										center(" Press Enter to Clear ");
+										invalid5();
+										cout << setw(15) << "" << " Add More? " << add_more << endl;
+										continue;
+
+									}
+									else if (money < total_payment) {
+
+										insuf_money();
+										invalid5();
+										cout << setw(15) << "" << " Add More? " << add_more << endl;
+										continue;
+
+									}
+									else {
+
+										confirmation();
+										out_greetings();
+
+
+									}
+								}
+							}
+
+
+
+						}
+
+
+					} else if (order == 5) {
+
+						while (true) {
+
+							cout << setw(15) << "" << " How Many Orders? ";
+							cin >> num_order;
+
+							if (!(invalid3(num_order))) {
+
+								continue;
+
+							}
+							else {
+
+
+								others += num_order;
+								bag += num_order;
+								total_payment += order_formula(wood_carve, num_order);
+
+								system("cls");
+								bag_total();
+								header();
+								header2();
+								cout << setw(15) << "" << " Choice: " << order << endl;
+								cout << setw(15) << "" << " How Many Orders? " << num_order << endl;
+								cout << "\n";
+								center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+								center(" Pay ");
+								cout << setw(56) << "" << "Php ";
+								cout << total_payment << endl;
+								center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+
+								if (others >= 5 && access == false) {
+
+									random_freebie();
+
+
+								}
+								else {
+
+									break;
+
+								}
+
+
+								break;
+
+
+							}
+						
+
+
+							
+						
+						}
+
+						
+
+						while (true) {
+
+
+							cout << setw(15) << "" << " Add More? (y/n): ";
+							cin >> add_more;
+
+							if (invalid_input(add_more)) {
+
+								center(" Press Enter to Clear ");
+
+								invalid5();
+
+							}
+							else if (add_more == 'Y' || add_more == 'y') {
+
+								break;
+
+							}
+							else if (add_more == 'N' || add_more == 'n') {
+
+								while (true) {
+
+									cout << setw(15) << "" << " Change for How Much? Php ";
+									cin >> money;
+
+									if (cin.fail() || cin.peek() != '\n') {
+
+
+										invalid();
+										center(" Press Enter to Clear ");
+										invalid5();
+										cout << setw(15) << "" << " Add More? " << add_more << endl;
+										continue;
+
+									}
+									else if (money < total_payment) {
+
+										insuf_money();
+										invalid5();
+										cout << setw(15) << "" << " Add More? " << add_more << endl;
+										continue;
+
+									}
+									else {
+
+										confirmation();
+										out_greetings();
+
+
+									}
+								}
+							}
+
+
+						}
+
+
+
+					} else if (order == 6) {
+
+						while (true) {
+
+							cout << setw(15) << "" << " How Many Orders? ";
+							cin >> num_order;
+
+							if (!(invalid3(num_order))) {
+
+								continue;
+
+							}
+							else {
+
+
+								others += num_order;
+								bag += num_order;
+								total_payment += order_formula(c_jewelry, num_order);
+
+								system("cls");
+								bag_total();
+								header();
+								header2();
+								cout << setw(15) << "" << " Choice: " << order << endl;
+								cout << setw(15) << "" << " How Many Orders? " << num_order << endl;
+								cout << "\n";
+								center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+								center(" Pay ");
+								cout << setw(56) << "" << "Php ";
+								cout << total_payment << endl;
+								center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+
+								if (others >= 5 && access == false) {
+
+									random_freebie();
+
+
+								}
+								else {
+
+									break;
+
+								}
+
+
+								break;
+
+							}
+						}
+						while (true) {
+
+							cout << setw(15) << "" << " Add More? (y/n): ";
+							cin >> add_more;
+
+							if (invalid_input(add_more)) {
+
+								center(" Press Enter to Clear ");
+
+								invalid5();
+
+							}
+							else if (add_more == 'Y' || add_more == 'y') {
+
+								break;
+
+							}
+							else if (add_more == 'N' || add_more == 'n') {
+
+								while (true) {
+
+									cout << setw(15) << "" << " Change for How Much? Php ";
+									cin >> money;
+
+									if (cin.fail() || cin.peek() != '\n') {
+
+
+										invalid();
+										center(" Press Enter to Clear ");
+										invalid5();
+										cout << setw(15) << "" << " Add More? " << add_more << endl;
+										continue;
+
+									}
+									else if (money < total_payment) {
+
+										insuf_money();
+										invalid5();
+										cout << setw(15) << "" << " Add More? " << add_more << endl;
+										continue;
+
+									}
+									else {
+
+										confirmation();
+										out_greetings();
+
+
+									}
+								}
+							}
+
+
+						}
+
+
+
+					} else if (order == 7) {
+
+
+						while (true) {
+
+							cout << setw(15) << "" << " How Many Orders? ";
+							cin >> num_order;
+
+							if (!(invalid3(num_order))) {
+
+								continue;
+
+							}
+							else {
+
+
+								others += num_order;
+								bag += num_order;
+								total_payment += order_formula(woven_bag, num_order);
+
+								system("cls");
+								bag_total();
+								header();
+								header2();
+								cout << setw(15) << "" << " Choice: " << order << endl;
+								cout << setw(15) << "" << " How Many Orders? " << num_order << endl;
+								cout << "\n";
+								center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+								center(" Pay ");
+								cout << setw(56) << "" << "Php ";
+								cout << total_payment << endl;
+								center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+
+								if (others >= 5 && access == false) {
+
+									random_freebie();
+
+
+								}
+								else {
+
+									break;
+
+								}
+
+
+								break;
+
+							}
+						}
+						while (true) {
+
+							cout << setw(15) << "" << " Add More? (y/n): ";
+							cin >> add_more;
+
+							if (invalid_input(add_more)) {
+
+								center(" Press Enter to Clear ");
+
+								invalid5();
+
+							}
+							else if (add_more == 'Y' || add_more == 'y') {
+
+								break;
+
+							}
+							else if (add_more == 'N' || add_more == 'n') {
+
+								while (true) {
+
+									cout << setw(15) << "" << " Change for How Much? Php ";
+									cin >> money;
+
+									if (cin.fail() || cin.peek() != '\n') {
+
+
+										invalid();
+										center(" Press Enter to Clear ");
+										invalid5();
+										cout << setw(15) << "" << " Add More? " << add_more << endl;
+										continue;
+
+									}
+									else if (money < total_payment) {
+
+										insuf_money();
+										invalid5();
+										cout << setw(15) << "" << " Add More? " << add_more << endl;
+										continue;
+
+									}
+									else {
+
+										confirmation();
+										out_greetings();
+
+
+									}
+								}
+							}
+
+
+						}
+
+					} else if (order == 8) {
+
+						while (true) {
+
+							cout << setw(15) << "" << " How Many Orders? ";
+							cin >> num_order;
+
+							if (!(invalid3(num_order))) {
+
+								continue;
+
+							}
+							else {
+
+
+								others += num_order;
+								bag += num_order;
+								total_payment += order_formula(t_shirt, num_order);
+
+								system("cls");
+								bag_total();
+								header();
+								header2();
+								cout << setw(15) << "" << " Choice: " << order << endl;
+								cout << setw(15) << "" << " How Many Orders? " << num_order << endl;
+								cout << "\n";
+								center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+								center(" Pay ");
+								cout << setw(56) << "" << "Php ";
+								cout << total_payment << endl;
+								center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+
+								if (others >= 5 && access == false) {
+
+									random_freebie();
+
+
+								}
+								else {
+
+									break;
+
+								}
+
+
+								break;
+
+							}
+						}
+						while (true) {
+
+							cout << setw(15) << "" << " Add More? (y/n): ";
+							cin >> add_more;
+
+							if (invalid_input(add_more)) {
+
+								center(" Press Enter to Clear ");
+
+								invalid5();
+
+							}
+							else if (add_more == 'Y' || add_more == 'y') {
+
+								break;
+
+							}
+							else if (add_more == 'N' || add_more == 'n') {
+
+								while (true) {
+
+									cout << setw(15) << "" << " Change for How Much? Php ";
+									cin >> money;
+
+									if (cin.fail() || cin.peek() != '\n') {
+
+
+										invalid();
+										center(" Press Enter to Clear ");
+										invalid5();
+										cout << setw(15) << "" << " Add More? " << add_more << endl;
+										continue;
+
+									}
+									else if (money < total_payment) {
+
+										insuf_money();
+										invalid5();
+										cout << setw(15) << "" << " Add More? " << add_more << endl;
+										continue;
+
+									}
+									else {
+
+										confirmation();
+										out_greetings();
+
+
+									}
+								}
+							}
+
+
+						}
+
+					} else if (order == 0) {
+
+						system("cls");
+						break;
+
+
+					}
+
+					
+
+				}
+
+				
+				
+
+
+				
+
+
+
+
+				break;
+
+
+			default:
+
+				break;
+			}
+
+	}
+
+	return 0;
+}
+
+void center(string name) {
+
+	int totalwidth = 120;
+
+	int center = (totalwidth - name.length()) / 2;
+
+	cout << setw(center) << setfill(' ') << "" << name << endl;
+
+}
+
+void center_custom(string namec) {
+
+	int totalwidth = 120;
+
+	int centerc = (totalwidth - namec.length()) / 2;
+
+	cout << setw(centerc) << setfill(' ') << "" << setw(namec.length() + 1) << setfill('-') << "" << setfill(' ') << endl;
+
+	cout << setw(centerc) << setfill(' ') << "" << namec << endl;
+
+	cout << setw(centerc) << setfill(' ') << "" << setw(namec.length() + 1) << setfill('-') << "" << setfill(' ') << endl;
+}
+
+
+char invalid_input(char y_or_n) {
+
+
+	if (cin.fail() || cin.peek() != '\n' || y_or_n != 'y' && y_or_n != 'Y' && y_or_n != 'n' && y_or_n != 'N') {
+		cin.clear();
+		cin.ignore(1000, '\n');
+		cout << "\n";
+		center("--------------------------------");
+		center(" Invalid Input Please Try Again ");
+		center("--------------------------------");
+		cout << "\n";
+
+		return true;
+
+	}
+	else {
+
+		return false;
+	}
+
+
+
+
+}
+
+int invalid_input_int(int num) {
+
+	if (cin.fail() || cin.peek() != '\n' || num != 0 && num != 1 && num != 2) {
+		cin.clear();
+		cin.ignore(1000, '\n');
+		cout << "\n";
+		center("--------------------------------");
+		center(" Invalid Input Please Try Again ");
+		center("--------------------------------");
+		cout << "\n";
+		return true;
+	}
+	else {
+		return false;
+	}
+
+}
+
+int invalid_input_int2(int num2) {
+
+	if (cin.fail() || cin.peek() != '\n' || num2 != 0 && num2 != 1 && num2 != 2 && num2 != 3) {
+		cin.clear();
+		cin.ignore(1000, '\n');
+		cout << "\n";
+		center("--------------------------------");
+		center(" Invalid Input Please Try Again ");
+		center("--------------------------------");
+		cout << "\n";
+		return true;
+	}
+	else {
+		return false;
+	}
+
+}
+
+void invalid() {
+
+
+	cin.clear();
+	cin.ignore(1000, '\n');
+	cout << "\n";
+	center("--------------------------------");
+	center(" Invalid Input Please Try Again ");
+	center("--------------------------------");
+	cout << "\n";
+
+
+}
+
+void center_60(string name1) {
+
+	int totalwidth = 60;
+
+	int center = (totalwidth - name1.length()) / 2;
+
+	cout << setw(center) << setfill(' ') << "" << left << setw(46) << name1;
+
+}
+
+bool full_design(bool value) {
+
+	if (value == true) {
+		cout << " " << setw(118) << setfill('-') << "" << setfill(' ') << endl;
+		cout << "|" << setw(118) << "" << "|" << endl;
+
+	}
+	else if (value == false) {
+
+		cout << "|" << setw(118) << "" << "|" << endl;
+		cout << " " << setw(118) << setfill('-') << "" << setfill(' ') << endl;
+	}
+	return value;
+}
+
+
+void header() {
+
+
+	full_design(true);
+	center(" TOURIST SPOTS - BAGUIO CITY EDITION ");
+	cout << "\n";
+	center(" Are You Ready? ");
+	full_design(false);
+	cout << setw(40) << setfill('*') << "" << setw(13) << setfill(' ') << "" << setw(14) << setfill('*') << "" << setw(14) << setfill(' ') << "" << setw(39) << setfill('*') << "" << setfill(' ') << endl;
+	cout << setw(120) << setfill('-') << "" << setfill(' ') << endl;
+
+	cout << "\n";
+
+}
+
+bool mt_pulag(bool torf) {
+
+
+	if (torf == true) {
+		center_custom(" Mount Pulag Adventure Package");
+
+		cout << "\n";
+		center(" <-<-<-<-<-<-<-<-< ");
+		center(" Price: Php 2000 ");
+		center(" >->->->->->->->-> ");
+		cout << "\n";
+
+	}
+	else if (torf == false) {
+
+
+		cout << setw(120) << setfill('-') << "" << setfill(' ') << endl;
+		cout << left << setw(3) << "|" << left << setw(116) << " Inclusions: Mount Pulag Hike, Guide, Transportation, Accomodation, Activities (Camping, Trekking, Sunrise Viewing)" << "|" << endl;
+		cout << "|" << setw(118) << "" << "|" << endl;
+		cout << left << setw(3) << "|" << left << setw(116) << " Exclusions: Food, Beverages, Personal Expenses, Travel Insurance " << "|" << endl;
+		cout << "|" << setw(118) << "" << "|" << endl;
+		cout << left << setw(3) << "|" << left << setw(116) << " Duration:   2 Days / 1 Night " << "|" << endl;
+		cout << "|" << setw(118) << "" << "|" << endl;
+		cout << setw(120) << setfill('-') << "" << setfill(' ') << endl;
+	}
+
+	return torf;
+}
+
+bool strawberry(bool torf) {
+
+
+	if (torf == true) {
+		center_custom(" Strawberry Farm and Wright Park Package");
+
+		cout << "\n";
+		center(" <-<-<-<-<-<-<-<-< ");
+		center(" Price: Php 1,200 ");
+		center(" >->->->->->->->-> ");
+		cout << "\n";
+
+	}
+	else if (torf == false) {
+
+
+		cout << setw(120) << setfill('-') << "" << setfill(' ') << endl;
+		cout << left << setw(3) << "|" << left << setw(116) << " Inclusions: Strawberry Farm & Wright Park Entrance, Transport, Activities, (Strawberry Picking, Horseback Riding)" << "|" << endl;
+		cout << "|" << setw(118) << "" << "|" << endl;
+		cout << left << setw(3) << "|" << left << setw(116) << " Exclusions: Food, Beverages, Personal Expenses, Travel Insurance " << "|" << endl;
+		cout << "|" << setw(118) << "" << "|" << endl;
+		cout << left << setw(3) << "|" << left << setw(116) << " Duration:   1 Day " << "|" << endl;
+		cout << "|" << setw(118) << "" << "|" << endl;
+		cout << setw(120) << setfill('-') << "" << setfill(' ') << endl;
+	}
+
+	return torf;
+}
+
+bool baguio_heritage(bool torf) {
+
+
+	if (torf == true) {
+		center_custom(" Baguio City Heritage Tour Package");
+
+		cout << "\n";
+		center(" <-<-<-<-<-<-<-<-< ");
+		center(" Price: Php 1,800 ");
+		center(" >->->->->->->->-> ");
+		cout << "\n";
+
+	}
+	else if (torf == false) {
+
+
+		cout << setw(120) << setfill('-') << "" << setfill(' ') << endl;
+		cout << left << setw(3) << "|" << left << setw(116) << " Inclusions: Mansion & Tam-awan Village Entrance, Guide, Transportation, Activities (City Tour, Cultural Show) " << "|" << endl;
+		cout << "|" << setw(118) << "" << "|" << endl;
+		cout << left << setw(3) << "|" << left << setw(116) << " Exclusions: Food, Beverages, Personal Expenses, Travel Insurance " << "|" << endl;
+		cout << "|" << setw(118) << "" << "|" << endl;
+		cout << left << setw(3) << "|" << left << setw(116) << " Duration:   1 Day " << "|" << endl;
+		cout << "|" << setw(118) << "" << "|" << endl;
+		cout << setw(120) << setfill('-') << "" << setfill(' ') << endl;
+	}
+
+	return torf;
+}
+
+bool burnham(bool torf) {
+
+
+	if (torf == true) {
+		center_custom(" Burnham Park and Lake Drive Tour Package");
+
+		cout << "\n";
+		center(" <-<-<-<-<-<-<-<-< ");
+		center(" Price: Php 1200 ");
+		center(" >->->->->->->->-> ");
+		cout << "\n";
+
+	}
+	else if (torf == false) {
+
+
+		cout << setw(120) << setfill('-') << "" << setfill(' ') << endl;
+		cout << left << setw(3) << "|" << left << setw(116) << " Inclusions: Burnham Park Entrance, Lake Drive Tour, Guide, Transportation, Activities (boating, cycling)" << "|" << endl;
+		cout << "|" << setw(118) << "" << "|" << endl;
+		cout << left << setw(3) << "|" << left << setw(116) << " Exclusions: Food, Beverages, Personal Expenses, Travel Insurance " << "|" << endl;
+		cout << "|" << setw(118) << "" << "|" << endl;
+		cout << left << setw(3) << "|" << left << setw(116) << " Duration:   1 Day " << "|" << endl;
+		cout << "|" << setw(118) << "" << "|" << endl;
+		cout << setw(120) << setfill('-') << "" << setfill(' ') << endl;
+	}
+
+	return torf;
+}
+
+bool baguio_museum(bool torf) {
+
+
+	if (torf == true) {
+		center_custom(" Baguio City Museum Package");
+
+		cout << "\n";
+		center(" <-<-<-<-<-<-<-<-< ");
+		center(" Price: Php 1000 ");
+		center(" >->->->->->->->-> ");
+		cout << "\n";
+
+	}
+	else if (torf == false) {
+
+
+		cout << setw(120) << setfill('-') << "" << setfill(' ') << endl;
+		cout << left << setw(3) << "|" << left << setw(116) << " Baguio City Museum Entance, Guide, Transportation, Activities (Museum Tour, Cultural Show)" << "|" << endl;
+		cout << "|" << setw(118) << "" << "|" << endl;
+		cout << left << setw(3) << "|" << left << setw(116) << " Exclusions: Food, Beverages, Personal Expenses, Travel Insurance " << "|" << endl;
+		cout << "|" << setw(118) << "" << "|" << endl;
+		cout << left << setw(3) << "|" << left << setw(116) << " Duration:   1 Day " << "|" << endl;
+		cout << "|" << setw(118) << "" << "|" << endl;
+		cout << setw(120) << setfill('-') << "" << setfill(' ') << endl;
+	}
+
+	return torf;
+}
+
+void package_limit_4() {
+
+	cout << "\n";
+
+	center_custom(" Sorry, the Package is Limited for 2-4 People Only ");
+
+	cout << "\n";
+	center(" Press Enter To Clear ");
+
+}
+
+void package_limit_6() {
+
+	cout << "\n";
+
+	center_custom(" Sorry, the Package is Limited for 2-6 People Only ");
+
+	cout << "\n";
+	center(" Press Enter To Clear ");
+
+}
+
+void package_limit_5() {
+
+	cout << "\n";
+
+	center_custom(" Sorry, the Package is Limited for 2-5 People Only ");
+
+	cout << "\n";
+	center(" Press Enter To Clear ");
+
+}
+
+string instruction_fail() {
+
+	cout << "\n";
+
+	center_custom(" Instructions Neglected, Terminating Program");
+
+	return 0;
+
+}
+
+
+
+float price_cal2000(int base_value, int person) {
+
+	return base_value * person;
+
+}
+
+
+void bag_total() {
+
+
+	cout << setw(120) << setfill('-') << "" << setfill(' ') << endl;
+	cout << setw(10) << "" << left << setw(5) << "Bag: " << bag << setw(2) << "" << left << setw(15) << "----->" << left << setw(5) << "Package: " << left << setw(15) << package << left << setw(5) << "Others: " << left << setw(20) << others << left << setw(5) << "Total Amount: " << "Php " << fixed << setprecision(2) << total_payment << endl;
+
+}
+
+
+void validator(char lchoice, int destination, bool book, bool number_of_people, bool expected_people, bool person_add, bool add_more1, bool person_add1, bool how_many_person) {
+
+
+	if (cin.get() == '\n') {
+
+		system("cls");
+
+		if (book) {
+
+			bag_total();
+			header();
+		
+			if (lchoice == 'a' || lchoice == 'A') {
+
+
+				if (destination == 1) {
+					mt_pulag(true);
+					mt_pulag(false);
+				}
+				else if (destination == 2) {
+
+					strawberry(true);
+					strawberry(false);
+				}
+
+			} else if (lchoice == 'b' || lchoice == 'B') {
+
+				if (destination == 1) {
+
+					baguio_heritage(true);
+					baguio_heritage(false);
+
+				}
+				else if (destination == 2) {
+
+					burnham(true);
+					burnham(false);
+
+				}
+				else if (destination == 3) {
+
+					baguio_museum(true);
+					baguio_museum(false);
+
+				}
+
+
+
+			}
+		}
+
+		if (number_of_people) {
+
+			bag_total();
+			header();
+			
+			if (lchoice == 'a' || lchoice == 'A') {
+
+				if (destination == 1) {
+
+					mt_pulag(true);
+				}
+				if (destination == 2) {
+
+					strawberry(true);
+				}
+			}
+			else if (lchoice == 'b' || lchoice == 'B') {
+
+				if (destination == 1) {
+
+					baguio_heritage(true);
+
+				}
+				else if (destination == 2) {
+
+					burnham(true);
+				}
+				else if (destination == 3) {
+
+					baguio_museum(true);
+				}
+
+
+			}
+
+
+			cout << setw(15) << "" << left << setw(36) << " Representative's Name: " << name << endl;
+			cout << setw(15) << "" << left << setw(36) << " Book for the Date of: " << date << endl;
+		}
+
+		if (expected_people) {
+
+
+			cout << setw(15) << "" << left << setw(36) << " Expected No. of People to Come: " << no_of_people << endl;
+
+		}
+
+		if (person_add) {
+
+
+			cout << setw(15) << "" << left << setw(36) << " Additional Person? (y/n): " << add_person << endl;
+
+		}
+
+		if (add_more1) {
+
+			cout << setw(15) << "" << setw(36) << " Add More? (y/n): " << add_more << endl;
+
+		}
+
+		if (person_add1) {
+
+			if (lchoice == 'a' || lchoice == 'A') {
+
+				if (destination == 1) {
+					cout << "\n";
+					center(" <-<-<-<-<-<-<-<-<-< ");
+					center(" Php 500.00 / head ");
+					center(" <-<-<-<-<-<-<-<-<-< ");
+				}
+				else if (destination == 2) {
+
+					cout << "\n";
+					center(" <-<-<-<-<-<-<-<-<-< ");
+					center(" Php 200.00 / head ");
+					center(" <-<-<-<-<-<-<-<-<-< ");
+				}
+			}
+			else if (lchoice == 'b' || lchoice == 'B') {
+
+				if (destination == 1) {
+					cout << "\n";
+					center(" <-<-<-<-<-<-<-<-<-< ");
+					center(" Php 400.00 / head ");
+					center(" <-<-<-<-<-<-<-<-<-< ");
+
+				}
+				else if (destination == 2) {
+
+					cout << "\n";
+					center(" <-<-<-<-<-<-<-<-<-< ");
+					center(" Php 200.00 / head ");
+					center(" <-<-<-<-<-<-<-<-<-< ");
+
+
+				}
+				else if (destination == 3) {
+
+
+					cout << "\n";
+					center(" <-<-<-<-<-<-<-<-<-< ");
+					center(" Php 150.00 / head ");
+					center(" <-<-<-<-<-<-<-<-<-< ");
+
+				}
+
+
+			}
+
+		}
+
+		if (how_many_person) {
+
+			cout << "\n";
+
+			cout << setw(15) << "" << left << setw(36) << " How Many Person? " << p_addition << endl;
+
+			cout << "\n";
+
+			center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+			center(" Pay ");
+			cout << setw(56) << "" << "Php ";
+			cout << total_payment << endl;
+			center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+			cout << "\n";
+
+		}
+
+	}
+	else {
+
+
+		instruction_fail();
+
+	}
+
+}
+
+void insuf_money() {
+
+	cout << "\n";
+	cout << setw(45) << "" << setw(30) << setfill('-') << "" << setfill(' ') << endl;
+	cout << setw(53) << "" << left << setw(5) << "Status: Denied " << endl;
+	cout << setw(45) << "" << setw(30) << setfill('-') << "" << setfill(' ') << endl;
+
+	cin.clear();
+	cin.ignore(1000, '\n');
+	cout << "\n";
+	center(" Press Enter to Enter New Amount of Money ");
+
+}
+
+float change() {
+
+
+	return money - total_payment;
+
+
+}
+
+
+void confirmation() {
+
+	cout << "\n";
+	cout << setw(45) << "" << setw(30) << setfill('-') << "" << setfill(' ') << endl;
+	cout << setw(50) << "" << left << setw(5) << "Status: Confirmed " << endl;
+	cout << setw(50) << "" << left << setw(5) << "Change: " << "Php " << change() << endl;
+	cout << setw(45) << "" << setw(30) << setfill('-') << "" << setfill(' ') << endl;
+}
+
+string out_greetings() {
+
+	center_custom(" Thank You For Booking, Hope You'll Enjoy Your Trip! ");
+	return 0;
+}
+
+void nature_package(char choice) {
+
+	bag_total();
+
+	header();
+
+	if (choice == 'a' || choice == 'A') {
+		center(" Nature and Adventure Packages ");
+
+	}
+	else if (choice == 'b' || choice == 'B') {
+		center(" Cullture and Historical Packages ");
+	}
+
+	cout << "\n";
+	cout << setw(25) << "" << setw(10) << setfill('-') << "" << setfill(' ') << setw(40) << "" << setw(8)
+		<< setfill('-') << "" << setfill(' ') << setw(15) << "" << setw(5) << setfill('-') << "" << setfill(' ') << endl;
+	center_60(" Packages ");
+	cout << setw(4) << "" << " Prices " << setw(15) << "" << " Pax " << endl;
+	cout << setw(25) << "" << setw(10) << setfill('-') << "" << setfill(' ') << setw(40) << "" << setw(8)
+		<< setfill('-') << "" << setfill(' ') << setw(15) << "" << setw(5) << setfill('-') << "" << setfill(' ') << endl;
+	cout << "\n\n";
+
+}
+
+void invalid2() {
+
+	if (cin.get() == '\n') {
+
+		system("cls");
+		bag_total();
+		header();
+		header2();
+		cout << setw(15) << "" << " Choice: " << order << endl;
+	}
+	else {
+		instruction_fail();
+	}
+
+}
+
+bool invalid3(float order1) {
+
+	if (cin.fail() || cin.peek() != '\n') {
+		
+
+		invalid();
+
+		center(" Press Enter to Clear ");
+
+		invalid2();
+
+		return false;
+	}
+
+		return true;
+	
+	
+	
+}
+
+void invalid4() {
+
+	if (cin.get() == '\n') {
+		system("cls");
+	}else {
+		instruction_fail();
+	}
+
+}
+
+void header2() {
+
+
+	center_custom(" WELCOME TO BAGUIO CITY'S FOOD & SOUVENIR ");
+
+	cout << "\n";
+	cout << setw(14.5) << "" << setw(31) << setfill('-') << "" << setw(14.5) << setfill(' ') << "" << " |"
+		<< setw(12.5) << "" << setw(35) << setfill('-') << "" << setfill(' ') << endl;
+	cout << setw(26) << "" << " FOOD ";
+	cout << setw(28) << "" << "|";
+	cout << setw(26) << "" << " SOUVENIR " << endl;
+	cout << setw(14.5) << "" << setw(31) << setfill('-') << "" << setw(14.5) << setfill(' ') << "" << " |"
+		<< setw(12.5) << "" << setw(35) << setfill('-') << "" << setfill(' ') << endl;
+	cout << setw(60) << "" << "|" << endl;
+
+	cout << setw(43) << "" << " Price " << setw(10) << "" << "|" << setw(43) << "" << " Price " << endl;
+
+	for (int x = 0; x < size_food; x++) {
+
+		cout << setw(5) << "" << left << setw(33) << food[x] << price_food[x] << setw(5) << "" << "|" << setw(5) << "" << left << setw(35) << souvenir[x] << price_souvenir[x] << endl;
+
+	}
+
+	cout << setw(60) << "" << "|" << endl;
+	cout << setw(120) << setfill('-') << "" << setfill(' ') << endl;
+
+	center("( Type the Designated Number to Order - Press '0' to Exit )");
+	center(" Freebies Are Awaiting for buying at least 5 items - 1 Time!");
+	cout << "\n";
+
+}
+
+float order_formula(float price, int num_of_person) {
+
+	return price * num_of_person;
+}
+
+void choice_order() {
+
+	cout << setw(15) << "" << " Choice: " << order << endl;
+	cout << setw(15) << "" << " How Many Orders? " << num_order << endl;
+
+}
+
+void invalid5() {
+
+
+	if (cin.get() == '\n') {
+
+		system("cls");
+		bag_total();
+		header();
+		header2();
+		cout << setw(15) << "" << " Choice: " << order << endl;
+		cout << setw(15) << "" << " How Many Orders? " << num_order << endl;
+		cout << "\n";
+		center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+		center(" Pay ");
+		cout << setw(56) << "" << "Php ";
+		cout << total_payment << endl;
+		center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+
+	}
+	else {
+		instruction_fail();
+	}
+
+
+
+}
+
+void total_price() {
+	
+	cout << "\n";
+	center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+	center(" Pay ");
+	cout << setw(56) << "" << "Php ";
+	cout << total_payment << endl;
+	center(" <-<-<-<-<-<-<-<-<-<-<-<-<-< ");
+	cout << "\n";
+
+}
+
+
+
+void random_freebie() {
+
+	access = true;
+
+	while (true) {
+
+		if (others >= 5) {
+
+			
+
+			center_custom(" You Just Accessed Random Freebie, Type 1 to 5 to Choose Randomly");
+			cout << setw(15) << "" << " Choice: ";
+			cin >> freebie;
+
+
+			if (cin.fail() || cin.peek() != '\n' || freebie != 1 && freebie != 2 && freebie != 3 && freebie != 4 && freebie != 5) {
+
+				invalid();
+
+				center(" Press Enter to Clear ");
+
+				invalid5();
+				
+
+				continue;
+
+			
+			}
+
+
+			switch (freebie) {
+
+			case 1:
+
+				center_custom(" You Just Obtained Strawberry Keychain");
+
+				break;
+
+			case 2:
+
+				center_custom(" You Just Obtained Igorot-made Wallet");
+
+				break;
+
+			case 3:
+
+				center_custom(" You Just Obtained Burnham Ballpoint");
+
+				break;
+
+			case 4:
+
+				center_custom(" Jackpot! You Just Acquired A Free Trip to Mt. Pulag");
+
+				break;
+
+			case 5:
+
+				center_custom(" You Just Obtained Baguio-made Journal");
+
+
+				break;
+
+
+			default:
+
+			
+
+				break;
+
+			}
+
+			break;
+
+		}
+
+
+	}
+	
+}
+
+
